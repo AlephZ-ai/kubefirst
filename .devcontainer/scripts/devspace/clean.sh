@@ -7,7 +7,8 @@ for j in {1..5}; do
     if [ -n "$containerid" ]; then
         docker rm -f "$containerid"
     fi
-    volumes=$(docker volume ls -q -f name=name="${KUBEFIRST_PROJECT_NAME}_devcontainer")
+    docker volume rm -f vscode || true
+    volumes=$(docker volume ls -q -f name="${KUBEFIRST_PROJECT_NAME}_devcontainer")
     if [ -n "$volumes" ]; then
         echo "$volumes" | xargs docker volume rm -f
     fi
