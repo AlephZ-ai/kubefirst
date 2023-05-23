@@ -1,0 +1,130 @@
+// https://containers.dev/templates
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/kubernetes-helm-minikube
+{
+	"name": "Kubefirst DevContainer",
+	"dockerComposeFile": "docker-compose.yaml",
+	"service": "kubefirst",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	// https://aka.ms/dev-containers-non-root.
+	"remoteUser": "vscode",
+	// https://code.visualstudio.com/remote/advancedcontainers/environment-variables
+	"userEnvProbe": "loginInteractiveShell",
+	// https://containers.dev/features
+	"remoteEnv": {
+		// WSLg GUI Apps in Dev Space
+		// "TERM": "${localEnv:TERM}",
+		// "DISPLAY": "${localEnv:DISPLAY}",
+		// "WAYLAND_DISPLAY":  "${localEnv:WAYLAND_DISPLAY}",
+		// "PULSE_SERVER": "${localEnv:PULSE_SERVER}",
+		// "WSL2_GUI_APPS_ENABLED": "${localEnv:WSL2_GUI_APPS_ENABLED}"
+	},
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [
+		12080,
+		12443
+	],
+	"portsAttributes": {
+		"12080": {
+			"label": "???",
+			"protocol": "http"
+		},
+		"12443": {
+			"label": "???",
+			"protocol": "https"
+		}
+	},
+	// https://code.visualstudio.com/remote/advancedcontainers/start-processes
+	// https://containers.dev/implementors/json_reference/#lifecycle-scripts
+	"updateContentCommand": [
+		"/bin/zsh",
+		"-l",
+		"-c",
+		"./run events update-content"
+	],
+	"onCreateCommand": [
+		"/bin/zsh",
+		"-l",
+		"-c",
+		"./run events on-create"
+	],
+	"postCreateCommand": [
+		"/bin/zsh",
+		"-l",
+		"-c",
+		"./run events post-create"
+	],
+	"postStartCommand": [
+		"/bin/zsh",
+		"-l",
+		"-c",
+		"./run events post-start"
+	],
+	"postAttachCommand": "nohup bash -c './run events post-attach &'",
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"terminal.integrated.profiles.linux": {
+					"zsh": {
+						"path": "zsh",
+						"args": [
+							"-l"
+						]
+					}
+				},
+				"terminal.integrated.defaultProfile.linux": "zsh",
+				"json.schemas": [
+					{
+						"fileMatch": [
+							"*/devcontainer-feature.json"
+						],
+						"url": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainerFeature.schema.json"
+					}
+				]
+			},
+			"extensions": [
+				"editorconfig.editorconfig",
+				"ms-azuretools.vscode-docker",
+				"gitHub.codespaces",
+				"gitHub.vscode-pull-request-github",
+				"gitHub.remotehub",
+				"gitHub.copilot-nightly",
+				"gitHub.copilot-labs",
+				"github.vscode-github-actions",
+				"hilleer.yaml-plus-json",
+				"ms-vscode-remote.remote-containers",
+				"rogalmic.zsh-debug",
+				"rogalmic.bash-debug",
+				"shakram02.bash-beautify",
+				"lizebang.bash-extension-pack",
+				"ms-dotnettools.csharp",
+				"dbaeumer.vscode-eslint",
+				"ms-vscode.powershell",
+				"ms-kubernetes-tools.vscode-kubernetes-tools",
+				"mindaro.mindaro",
+				"hashicorp.terraform",
+				"ms-azuretools.vscode-azureterraform"
+			]
+		}
+	},
+	"features": {
+		// https://github.com/AlephZ-ai/devcontainer-features/tree/main/src/homebrew
+		"ghcr.io/AlephZ-ai/devcontainer-features/homebrew": {
+			"brews": "kubernetes-cli helm kustomize skaffold derailed/k9s/k9s argocd minikube kind k3d vcluster kubefirst/tools/kubefirst terraform"
+		},
+		// https://github.com/devcontainers/features/tree/main/src/node
+		"ghcr.io/AlephZ-ai/devcontainer-features/nvm": {
+			"nodeGypDependencies": "true",
+			"packages": "@npmcli/fs"
+		}
+		// https://github.com/devcontainers/features/tree/main/src/terraform
+		// "ghcr.io/devcontainers/features/terraform:1": {
+		// 	"version": "latest",
+		// 	"tflint": "latest",
+		// 	"terragrunt": "latest",
+		// 	"installSentinel": false,
+		// 	"installTFsec": false,
+		// 	"installTerraformDocs": false			
+		// }
+	}
+}

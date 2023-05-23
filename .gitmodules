@@ -1,0 +1,4 @@
+[submodule ".devcontainer/dependencies/alephz-ai/devcontainer-features"]
+	path = .devcontainer/dependencies/alephz-ai/devcontainer-features
+	url = https://github.com/AlephZ-ai/devcontainer-features
+	branch = main

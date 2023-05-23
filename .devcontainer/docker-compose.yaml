@@ -1,0 +1,24 @@
+# https://docs.docker.com/compose/compose-file/
+version: '3.8'
+
+services:
+  # Kubefirst cluster
+  kubefirst:
+    image: "cr.alephz.ai/devcontainers/$KUBEFIRST_PROJECT_NAME:latest"
+    container_name: $KUBEFIRST_PROJECT_NAME-devspace
+    labels: ["ai.alephz.role=$KUBEFIRST_PROJECT_NAME"]
+    env_file: .env
+    # https://docs.docker.com/compose/compose-file/build/#build-definition
+    # Includes https://github.com/devcontainers/features/tree/main/src/common-utils
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        IMAGE: cr.alephz.ai/devcontainers/devcontainer:latest
+    networks:
+      - default
+    volumes:
+      - ../..:/workspaces:cached
+
+networks:
+  default:
