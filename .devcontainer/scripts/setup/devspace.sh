@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 #shellcheck shell=bash
+#shellcheck source=/dev/null
 set -e
 # Run dependency devspace setup
-#"$KUBEFIRST_PROJECT_ROOT/run" -id alephz-ai/devcontainer-features setup devspace
+"$KUBEFIRST_PROJECT_ROOT/run" -id alephz-ai/devcontainer-features setup devspace
 # Fix for dotnet
 export PATH="/usr/local/dotnet/current:/usr/share/dotnet:$PATH"
 # Fix for dotnet tools
