@@ -21,17 +21,77 @@
 	},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [
+		11080,
+		11901,
 		12080,
-		12443
+		13080,
+		13443,
+		14080,
+		14443,
+		15080,
+		16080,
+		17080,
+		17081,
+		18080,
+		18081,
+		18082
 	],
 	"portsAttributes": {
-		"12080": {
-			"label": "???",
+		"11080": {
+			"label": "Web Desktop (noVNC)",
 			"protocol": "http"
 		},
-		"12443": {
-			"label": "???",
+		"11901": {
+			"label": "VNC",
+			"protocol": "http"
+		},
+		"12080": {
+			"label": "Kubefirst Console",
+			"protocol": "http"
+		},
+		"13080": {
+			"label": "Vault (http)",
+			"protocol": "http"
+		},
+		"13443": {
+			"label": "Vault (https)",
 			"protocol": "https"
+		},
+		"14080": {
+			"label": "Argo Workflows",
+			"protocol": "http"
+		},
+		"14443": {
+			"label": "Argo CD",
+			"protocol": "https"
+		},
+		"15080": {
+			"label": "Atlantis Terraform Automation",
+			"protocol": "http"
+		},
+		"16080": {
+			"label": "ChartMuseum",
+			"protocol": "http"
+		},
+		"17080": {
+			"label": "MinIO",
+			"protocol": "http"
+		},
+		"17081": {
+			"label": "MinIO Console",
+			"protocol": "http"
+		},
+		"18080": {
+			"label": "Sample App Metaphor - Development",
+			"protocol": "http"
+		},
+		"18081": {
+			"label": "Sample App Metaphor - Staging",
+			"protocol": "http"
+		},
+		"18082": {
+			"label": "Sample App Metaphor - Production",
+			"protocol": "http"
 		}
 	},
 	// https://code.visualstudio.com/remote/advancedcontainers/start-processes
